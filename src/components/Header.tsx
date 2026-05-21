@@ -29,72 +29,82 @@ export const Header: React.FC<HeaderProps> = ({ user, loadingAuth }) => {
   };
 
   return (
-    <header className="border-b border-gray-150 bg-white/80 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+    <header className="h-16 bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm flex items-center justify-between px-4 sm:px-6">
+      <div className="max-w-7xl w-full mx-auto flex items-center justify-between">
         {/* Logo and App Title */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-400 flex items-center justify-center shadow-md shadow-amber-200/50 relative overflow-hidden group">
-            <span className="text-xl font-bold text-amber-950 group-hover:scale-110 transition-transform">🍌</span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none" />
+          <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center relative overflow-hidden group shadow-sm">
+            <span className="text-sm font-bold text-white group-hover:scale-110 transition-transform select-none">🍌</span>
           </div>
           <div>
-            <div className="flex items-center gap-1.5">
-              <h1 className="text-lg font-bold tracking-tight text-gray-900 font-sans">
-                나노 바나나 목업 AI 비주얼라이저
+            <div className="flex items-center gap-2">
+              <h1 className="text-base font-extrabold tracking-tight text-slate-800 font-sans">
+                나노 바나나 <span className="text-blue-600">AI</span> 비주얼라이저
               </h1>
-              <span className="text-[10px] bg-amber-100 text-amber-800 font-semibold px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
-                <Sparkles size={8} /> Nano Banana
+              <span className="hidden xs:inline-flex text-[9px] bg-blue-50 text-blue-700 font-bold px-1.5 py-0.5 rounded border border-blue-100 items-center gap-0.5">
+                <Sparkles size={8} /> Professional
               </span>
             </div>
-            <p className="text-xs font-medium text-gray-500 hidden sm:block">
-              Generative AI-Powered Brand Mockups
+            <p className="text-[10px] font-medium text-slate-400 hidden sm:block leading-none mt-0.5">
+              Generative AI-Powered Pro consistent mockups
             </p>
           </div>
         </div>
 
-        {/* User Status / Login Actions */}
-        <div className="flex items-center gap-3">
-          {loadingAuth ? (
-            <div className="h-9 w-24 bg-gray-100 animate-pulse rounded-lg" />
-          ) : user ? (
-            <div className="flex items-center gap-2.5 sm:gap-3 bg-gray-50 hover:bg-gray-100/80 transition-colors p-1.5 pr-3 rounded-full border border-gray-100">
-              {user.photoURL ? (
-                <img
-                  src={user.photoURL}
-                  alt={user.displayName}
-                  className="w-7 h-7 rounded-full border border-white shadow-sm"
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <div className="w-7 h-7 rounded-full bg-amber-100 flex items-center justify-center text-amber-800">
-                  <User size={14} />
+        {/* API Connection Indicator & User actions */}
+        <div className="flex items-center gap-4">
+          {/* Gemini connection badge */}
+          <div className="hidden md:flex items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200">
+            <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-[10px] font-medium text-slate-600 font-mono">Gemini 2.5 Connected</span>
+          </div>
+
+          <div className="h-4 w-[1px] bg-slate-200 hidden md:block" />
+
+          {/* User Status / Login Actions */}
+          <div className="flex items-center gap-3">
+            {loadingAuth ? (
+              <div className="h-8 w-24 bg-slate-100 animate-pulse rounded-lg" />
+            ) : user ? (
+              <div className="flex items-center gap-2.5 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName}
+                    className="w-6 h-6 rounded-full border border-slate-100 shadow-sm"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+                    <User size={12} />
+                  </div>
+                )}
+                <div className="hidden xs:block text-left">
+                  <p className="text-[11px] font-semibold text-slate-800 leading-tight">
+                    {user.displayName}
+                  </p>
+                  <p className="text-[8px] text-slate-400 leading-none">Firebase OAuth</p>
                 </div>
-              )}
-              <div className="hidden md:block">
-                <p className="text-xs font-semibold text-gray-800 leading-tight">
-                  {user.displayName}
-                </p>
-                <p className="text-[10px] text-gray-500 leading-none">Logged In</p>
+                <button
+                  onClick={handleLogout}
+                  className="text-slate-400 hover:text-red-500 duration-150 p-1 rounded-full hover:bg-slate-50 transition-all cursor-pointer"
+                  title="로그아웃"
+                  id="btn-logout"
+                >
+                  <LogOut size={12} className="stroke-[2.5]" />
+                </button>
               </div>
+            ) : (
               <button
-                onClick={handleLogout}
-                className="text-gray-400 hover:text-red-500 duration-150 p-1 rounded-full hover:bg-white transition-all shadow-sm"
-                title="로그아웃"
-                id="btn-logout"
+                onClick={handleLogin}
+                className="flex items-center gap-1.5 text-xs font-semibold text-white bg-slate-900 hover:bg-blue-600 hover:shadow-blue-200 px-3.5 py-1.5 rounded-lg transition-all duration-300 shadow-sm cursor-pointer"
+                id="btn-login"
               >
-                <LogOut size={14} className="stroke-[2.5]" />
+                <LogIn size={13} />
+                <span>Google 계정 로그인</span>
               </button>
-            </div>
-          ) : (
-            <button
-              onClick={handleLogin}
-              className="flex items-center gap-2 text-xs font-semibold text-white bg-gray-900 hover:bg-amber-500 hover:text-amber-950 px-4 py-2 rounded-xl transition-all duration-300 shadow-md shadow-gray-200/50 hover:shadow-amber-200/40 cursor-pointer"
-              id="btn-login"
-            >
-              <LogIn size={14} />
-              <span>Google 계정으로 시작</span>
-            </button>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </header>

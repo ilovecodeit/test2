@@ -77,16 +77,16 @@ export const MockupSelector: React.FC<MockupSelectorProps> = ({
   onLoginRequest
 }) => {
   return (
-    <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm shadow-gray-150/40 space-y-6">
-      <div className="flex items-center gap-2 pb-1 border-b border-gray-50">
-        <Layout size={18} className="text-amber-500" />
-        <h3 className="text-sm font-bold text-gray-800">목업 디자인 및 메체 설계</h3>
+    <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-6">
+      <div className="flex items-center gap-2 pb-1.5 border-b border-slate-100">
+        <Layout size={18} className="text-blue-600" />
+        <h3 className="text-sm font-bold text-slate-800">목업 디자인 및 매체 설계</h3>
       </div>
 
       {/* Product Information Form */}
       <div className="space-y-4">
         <div>
-          <label className="block text-xs font-bold text-gray-700 mb-1.5" htmlFor="input-product-name">
+          <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5" htmlFor="input-product-name">
             상품 개발명 (필수)
           </label>
           <input
@@ -96,12 +96,12 @@ export const MockupSelector: React.FC<MockupSelectorProps> = ({
             placeholder="예시: 나노 바나나 무선 충전 패드"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
-            className="w-full text-xs font-medium px-4 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-100/50 bg-gray-50/50 hover:bg-white text-gray-800 transition-all placeholder:text-gray-400"
+            className="w-full text-xs font-medium px-4 py-3 rounded-lg border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100/40 bg-slate-50/50 hover:bg-white text-slate-800 transition-all placeholder:text-slate-400"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-gray-700 mb-1.5" htmlFor="input-product-desc">
+          <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5" htmlFor="input-product-desc">
             상품 추가 상세 정보 (선택)
           </label>
           <textarea
@@ -110,14 +110,14 @@ export const MockupSelector: React.FC<MockupSelectorProps> = ({
             rows={2}
             value={productDescription}
             onChange={(e) => setProductDescription(e.target.value)}
-            className="w-full text-xs font-medium px-4 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-100/50 bg-gray-50/50 hover:bg-white text-gray-800 transition-all placeholder:text-gray-400 resize-none"
+            className="w-full text-xs font-medium px-4 py-3 rounded-lg border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100/40 bg-slate-50/50 hover:bg-white text-slate-800 transition-all placeholder:text-slate-400 resize-none font-sans"
           />
         </div>
       </div>
 
       {/* Grid of medium select cards */}
       <div className="space-y-3">
-        <label className="block text-xs font-bold text-gray-700">시뮬레이션할 브랜드 매체 선택</label>
+        <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">시뮬레이션할 브랜드 매체 선택</label>
         <div className="grid grid-cols-1 gap-2.5">
           {MEDIUMS.map((med) => {
             const isSelected = selectedMedium === med.id;
@@ -125,31 +125,31 @@ export const MockupSelector: React.FC<MockupSelectorProps> = ({
               <button
                 key={med.id}
                 onClick={() => setSelectedMedium(med.id)}
-                className={`flex items-center justify-between text-left p-3.5 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${
+                className={`flex items-center justify-between text-left p-3.5 rounded-xl border cursor-pointer transition-all duration-300 ${
                   isSelected
-                    ? "border-amber-400 bg-amber-50/25 shadow-sm shadow-amber-100/30 font-semibold"
-                    : "border-gray-100 hover:border-gray-200 bg-white"
+                    ? "border-blue-600 bg-blue-50/10 shadow-sm font-semibold"
+                    : "border-slate-100 hover:border-slate-200 bg-white"
                 }`}
                 id={`medium-${med.id}`}
               >
                 <div className="flex items-center gap-3">
-                  <div className="text-2xl w-10 h-10 flex items-center justify-center bg-gray-50 rounded-xl border border-gray-100">
+                  <div className="text-xl w-10 h-10 flex items-center justify-center bg-slate-50 rounded-lg border border-slate-100">
                     {med.emoji}
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-gray-900 leading-tight">{med.name}</span>
+                      <span className="text-xs font-bold text-slate-800 leading-tight">{med.name}</span>
                       <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${
-                        isSelected ? "bg-amber-100 text-amber-900" : "bg-gray-100 text-gray-500"
+                        isSelected ? "bg-blue-100 text-blue-800" : "bg-slate-100 text-slate-500"
                       }`}>
                         {med.badge}
                       </span>
                     </div>
-                    <p className="text-[10px] text-gray-400 mt-0.5 leading-snug">{med.description}</p>
+                    <p className="text-[10px] text-slate-400 mt-0.5 leading-snug">{med.description}</p>
                   </div>
                 </div>
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                  isSelected ? "border-amber-500 bg-amber-500 text-white" : "border-gray-200"
+                <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                  isSelected ? "border-blue-600 bg-blue-600 text-white" : "border-slate-250"
                 }`}>
                   {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                 </div>
@@ -164,7 +164,7 @@ export const MockupSelector: React.FC<MockupSelectorProps> = ({
         {!isLoggedIn ? (
           <button
             onClick={onLoginRequest}
-            className="w-full flex items-center justify-center gap-2 text-xs font-bold py-3.5 px-4 rounded-2xl bg-gray-900 hover:bg-amber-500 hover:text-amber-950 text-white transition-all duration-300 shadow-lg shadow-gray-200/50 hover:shadow-amber-200/40 cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 text-xs font-bold py-3.5 px-4 rounded-xl bg-slate-900 hover:bg-blue-600 text-white transition-all duration-300 shadow-lg shadow-blue-100/10 cursor-pointer"
             id="btn-login-to-generate"
           >
             <span>Google 로그인 후 생성하기</span>
@@ -173,29 +173,29 @@ export const MockupSelector: React.FC<MockupSelectorProps> = ({
           <button
             onClick={onGenerate}
             disabled={isGenerating || !hasImage || !productName.trim()}
-            className={`w-full flex items-center justify-center gap-2 text-xs font-extrabold py-4 px-4 rounded-2xl text-white transition-all duration-300 shadow-md ${
+            className={`w-full flex items-center justify-center gap-2 text-xs font-bold py-3.5 px-4 rounded-xl text-white transition-all duration-300 shadow-md ${
               isGenerating
-                ? "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"
+                ? "bg-slate-100 text-slate-400 cursor-not-allowed shadow-none border border-slate-200"
                 : !hasImage
-                ? "bg-amber-100 text-amber-500/80 cursor-not-allowed shadow-none"
+                ? "bg-slate-100 text-slate-400 cursor-not-allowed shadow-none border border-slate-200"
                 : !productName.trim()
-                ? "bg-amber-100 text-amber-500/80 cursor-not-allowed shadow-none"
-                : "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 shadow-amber-300/30 scale-100 active:scale-[0.98] cursor-pointer"
+                ? "bg-slate-100 text-slate-400 cursor-not-allowed shadow-none border border-slate-200"
+                : "bg-slate-900 hover:bg-slate-800 shadow-lg shadow-slate-900/10 scale-100 active:scale-[0.98] cursor-pointer"
             }`}
             id="btn-generate-mockup"
           >
             {isGenerating ? (
               <>
-                <svg className="animate-spin h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
-                <span>나노 바나나 생성 중...</span>
+                <span>시각화 생성 실행 중...</span>
               </>
             ) : (
               <>
-                <Sparkles size={16} />
-                <span>나노 바나나 AI 목업 비주얼 생성</span>
+                <Sparkles size={14} />
+                <span>시각화 생성 시작하기</span>
               </>
             )}
           </button>
@@ -206,8 +206,8 @@ export const MockupSelector: React.FC<MockupSelectorProps> = ({
           </p>
         )}
         {hasImage && !productName.trim() && isLoggedIn && (
-          <p className="text-[10px] text-amber-800 font-medium text-center mt-2.5">
-            * 상품 개발명을 입력해야 생성이 활성화됩니다.
+          <p className="text-[10px] text-blue-600 font-medium text-center mt-2.5">
+            * 상품 개발명을 입력해야 시뮬레이션 생성이 활성화됩니다.
           </p>
         )}
       </div>

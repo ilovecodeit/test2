@@ -252,31 +252,31 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans selection:bg-amber-100 selection:text-amber-900 flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900 flex flex-col">
       {/* Header navbar overlay */}
       <Header user={user} loadingAuth={loadingAuth} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         
         {/* Help introductory banner card */}
-        <div className="bg-gradient-to-r from-amber-400/90 to-amber-500 text-amber-950 rounded-3xl p-6 md:p-8 shadow-xl shadow-amber-100/40 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 w-64 h-64 bg-amber-300 opacity-20 rounded-full blur-2xl" />
+        <div className="bg-slate-900 text-white rounded-xl p-6 md:p-8 shadow-md relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border border-slate-800">
+          <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 w-64 h-64 bg-gradient-to-br from-blue-600 to-indigo-800 opacity-20 rounded-full blur-2xl" />
           <div className="space-y-2 text-left relative z-10 max-w-2xl">
-            <h2 className="text-xl md:text-2xl font-black tracking-tight leading-tight flex items-center gap-2">
-              <span>나노 바나나 일관성 마케팅 비주얼 라이저</span>🍌
+            <h2 className="text-xl md:text-2xl font-extrabold tracking-tight leading-tight flex items-center gap-2">
+              <span>나노 바나나 일관성 마케팅 <span className="text-blue-400">비주얼라이저</span></span>🍌
             </h2>
-            <p className="text-xs md:text-sm font-medium opacity-90 leading-relaxed">
+            <p className="text-xs md:text-sm font-medium opacity-80 leading-relaxed text-slate-300">
               업로드한 브랜드 컨셉 이미지나 로고 그래픽을 일관되게 유지하면서 커피 머그잔, 현대식 도심 빌보드 전광판, 데일리 오가닉 티셔츠 등 실제 마케팅 판매 채널에서의 사실감 있는 홍보물로 시뮬레이션하고 영구 보전합니다.
             </p>
           </div>
           <div className="flex shrink-0 gap-3 relative z-10">
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 text-center min-w-24">
-              <span className="block text-lg font-black leading-none">100%</span>
-              <span className="text-[10px] opacity-80 mt-1 block">브랜드 일치</span>
+            <div className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-center min-w-24">
+              <span className="block text-lg font-black leading-none text-blue-400">100%</span>
+              <span className="text-[10px] opacity-70 mt-1 block">브랜드 일치</span>
             </div>
-            <div className="bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl px-4 py-3 text-center min-w-24">
-              <span className="block text-lg font-black leading-none">Real</span>
-              <span className="text-[10px] opacity-80 mt-1 block">크리에이티브</span>
+            <div className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-center min-w-24">
+              <span className="block text-lg font-black leading-none text-emerald-400">Real</span>
+              <span className="text-[10px] opacity-70 mt-1 block">크리에이티브</span>
             </div>
           </div>
         </div>
@@ -320,13 +320,13 @@ export default function App() {
 
             {/* AI Generator Realtime output block */}
             {(isGenerating || currentGeneratedMockup || lastError) && (
-              <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm shadow-gray-150/40 text-center space-y-4">
-                <h4 className="text-xs font-bold text-gray-800 flex items-center justify-center gap-1.5 border-b border-gray-50 pb-2.5">
-                  <span>실시간 나노 바나나 엔진 렌더링</span>
-                  {isGenerating && <span className="flex h-2 w-2 relative"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span></span>}
+              <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm text-center space-y-4">
+                <h4 className="text-xs font-bold text-slate-800 flex items-center justify-center gap-1.5 border-b border-slate-100 pb-2.5 uppercase tracking-wider">
+                  <span>실시간 AI 합성 렌더링 시뮬레이션</span>
+                  {isGenerating && <span className="flex h-2 w-2 relative"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span></span>}
                 </h4>
 
-                <div className="bg-gray-950 aspect-square rounded-2xl overflow-hidden border border-gray-100 shadow-inner relative flex items-center justify-center">
+                <div className="bg-slate-950 aspect-square rounded-lg overflow-hidden border border-slate-200 shadow-inner relative flex items-center justify-center">
                   <AnimatePresence mode="wait">
                     {isGenerating ? (
                       <motion.div
@@ -336,11 +336,11 @@ export default function App() {
                         exit={{ opacity: 0 }}
                         className="flex flex-col items-center max-w-xs px-4 space-y-3.5"
                       >
-                        <RefreshCw size={32} className="text-amber-400 animate-spin" />
+                        <RefreshCw size={28} className="text-blue-500 animate-spin" />
                         <div>
-                          <p className="text-xs font-bold text-white">생성 매질 합성 및 레이아웃 수정 중</p>
-                          <p className="text-[10px] text-gray-400 mt-1 leading-normal">
-                             스튜디오 광학 텍스처 정밀 매핑 작업을 수행하고 있습니다. 최대 약 1분이 소요될 수 있습니다.
+                          <p className="text-xs font-bold text-white">합성 및 레이아웃 자동화 렌더러 동작 중</p>
+                          <p className="text-[10px] text-slate-400 mt-1 lines-clamp-3 leading-relaxed">
+                            에디션 디자인의 투영 각도 파악 및 정밀 머티리얼 광학 매핑 작업을 수행하고 있습니다. 최대 약 1분이 소요될 수 있습니다.
                           </p>
                         </div>
                       </motion.div>
@@ -352,7 +352,7 @@ export default function App() {
                         exit={{ opacity: 0 }}
                         className="flex flex-col items-center text-red-400 max-w-xs px-4 space-y-2.5"
                       >
-                        <AlertTriangle size={32} className="text-red-500" />
+                        <AlertTriangle size={28} className="text-red-500" />
                         <div>
                           <p className="text-xs font-bold text-white">서버 오류가 발생했습니다</p>
                           <p className="text-[10px] text-red-300 bg-red-950/40 p-2.5 rounded-lg border border-red-900/30 font-mono mt-1 text-center select-all max-h-36 overflow-y-auto">
@@ -375,7 +375,7 @@ export default function App() {
                           className="w-full h-full object-contain"
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute bottom-3 left-3 bg-emerald-500/90 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold shadow-md select-none">
+                        <div className="absolute bottom-3 left-3 bg-emerald-600 text-white px-2.5 py-1 rounded text-[9px] font-extrabold shadow-md select-none tracking-wide">
                           🎉 합성 렌더링 완료!
                         </div>
                       </motion.div>
@@ -388,21 +388,21 @@ export default function App() {
         </div>
 
         {/* CLOUD HISTORIES ROW */}
-        <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm shadow-gray-150/40">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
           {!user ? (
             <div className="py-8 text-center max-w-sm mx-auto space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-500 border border-amber-100 mx-auto">
-                <PackageOpen size={20} />
+              <div className="w-12 h-12 rounded-lg bg-slate-50 flex items-center justify-center text-slate-500 border border-slate-200 mx-auto shadow-sm">
+                <PackageOpen size={18} />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-gray-800">클라우드 통합 저장 서비스</h4>
-                <p className="text-[10px] text-gray-500 mt-1 leading-relaxed">
+                <h4 className="text-xs font-bold text-slate-800">클라우드 동기화 시스템 연결제안</h4>
+                <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">
                   나노 바나나 목업 시뮬레이션 결과 데이터를 Google OAuth 기기로 영구히 마스터 보존하는 계정 로그인 기능입니다.
                 </p>
               </div>
               <button
                 onClick={triggerGoogleLogin}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 bg-gray-900 hover:bg-amber-500 hover:text-amber-950 text-white rounded-xl shadow transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg shadow-md cursor-pointer transition-colors"
                 id="btn-login-history"
               >
                 <span>Google 계정 연동하기</span>
@@ -419,8 +419,8 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-100 bg-white/40 py-6 text-center select-none">
-        <p className="text-[10px] text-gray-400">
+      <footer className="border-t border-slate-200 bg-slate-50/50 py-6 text-center select-none mt-auto">
+        <p className="text-[10px] text-slate-400 font-mono">
           © 2026 나노 바나나 목업 AI 비주얼라이저 (Product Mockup AI Visualizer). Powered by Google Gemini 2.5 Flash Image.
         </p>
       </footer>
