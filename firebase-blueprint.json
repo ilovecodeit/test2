@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "photoURL": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "displayName"]
+    },
+    "MockupHistory": {
+      "title": "MockupHistory",
+      "description": "Individual mockup generated for various mediums",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "originalImage": {
+          "type": "string",
+          "description": "Base64 string of original product design"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "productDescription": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string",
+          "enum": ["mug", "billboard", "tshirt", "phone_case", "totebag"]
+        },
+        "mockupImage": {
+          "type": "string",
+          "description": "Base64 image returned by nano banana"
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "userId", "originalImage", "medium", "mockupImage", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile documentation"
+    },
+    "/users/{userId}/mockups/{mockupId}": {
+      "schema": "MockupHistory",
+      "description": "Historic generated mockups for this user"
+    }
+  }
+}

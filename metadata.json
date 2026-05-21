@@ -1,0 +1,6 @@
+{
+  "name": "Product Mockup AI Visualizer",
+  "description": "상품 이미지를 업로드하고 다양한 마케팅 매체(커피 머그, 빌보드, 티셔츠 등)에서의 시뮬레이션을 생성형 AI(Nano Banana)를 활용하여 시각화하고 영구저장합니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
