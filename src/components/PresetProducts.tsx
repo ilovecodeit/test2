@@ -169,16 +169,55 @@ const PRESETS: PresetItem[] = [
   }
 ];
 
+const svgToPng = (svgString: string, size: number = 400): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    try {
+      const encodedSvg = btoa(encodeURIComponent(svgString).replace(/%([0-9A-F]{2})/g, (_, p1) => {
+        return String.fromCharCode(parseInt(p1, 16));
+      }));
+      img.src = `data:image/svg+xml;base64,${encodedSvg}`;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, size, size);
+          try {
+            const pngUrl = canvas.toDataURL("image/png");
+            resolve(pngUrl);
+          } catch (e) {
+            reject(e);
+          }
+        } else {
+          reject(new Error("Could not get 2D canvas context"));
+        }
+      };
+      img.onerror = (err) => {
+        reject(new Error("Failed to load SVG into Image: " + err));
+      };
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 interface PresetProductsProps {
-  onSelect: (imageUrl: string, name: string, description: string) => void;
+  onSelect: (imageUrl: string, name: string, description: string, id: string) => void;
   selectedId: string | null;
 }
 
 export const PresetProducts: React.FC<PresetProductsProps> = ({ onSelect, selectedId }) => {
-  const handleSelect = (preset: PresetItem) => {
-    // Generate valid svg data url
-    const svgUrl = `data:image/svg+xml;utf8,${encodeURIComponent(preset.svg)}`;
-    onSelect(svgUrl, preset.name, preset.description);
+  const handleSelect = async (preset: PresetItem) => {
+    try {
+      const pngUrl = await svgToPng(preset.svg);
+      onSelect(pngUrl, preset.name, preset.description, preset.id);
+    } catch (error) {
+      console.error("Failed to convert SVG to PNG, fallback to SVG URL:", error);
+      const svgUrl = `data:image/svg+xml;utf8,${encodeURIComponent(preset.svg)}`;
+      onSelect(svgUrl, preset.name, preset.description, preset.id);
+    }
   };
 
   return (
